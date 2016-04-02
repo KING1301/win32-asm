@@ -1,0 +1,61 @@
+
+#include		<resource.h>
+//--------------------------------------------------------------------------------------------------------
+#define	ICO_MAIN	        0x1000  //图标
+#define	IDM_MAIN	        0x2000	//菜单
+#define	IDA_MAIN	        0x2000	//加速键
+
+#define	IDM_HIDE	        0x2001
+#define	IDM_RUN      	    0x2002
+#define	IDM_EXIT		    0x2003
+
+#define	IDM_HEX		        0x2004
+#define	IDM_DEC		        0x2005
+
+#define	IDM_ABOUT	        0x2010
+#define IDM_MENUHELP        0x2011
+//---------------------------------------------------------------------------------------------------------
+ICO_MAIN	ICON		"Main.ico"
+//----------------------------------------------------------------------------------------------------------
+IDM_MAIN	menu	discardable
+BEGIN
+	popup	"设置(&S)"
+	BEGIN
+
+		menuitem	"隐藏/显示(&D)\tAlt+D",	IDM_HIDE
+		menuitem	"自启动(&R)\tCtrl+Alt+R",IDM_RUN
+		menuitem	separator
+		menuitem	"退出(&X)\tAlt+X",IDM_EXIT
+	END
+	popup	"保存选项(&V)"
+	BEGIN
+
+		menuitem	"十六进值(&H)\tCtrl+Alt+H",IDM_HEX
+		menuitem	separator
+		menuitem	"十进值(&D)\tCtrl+Alt+D",IDM_DEC
+	END
+	popup	"帮助(&H)"	,HELP
+	BEGIN
+		menuitem	"关于本程序(&A)...\tF1",IDM_ABOUT
+	END
+END
+//--------------------------------------------------------------------------------------------------
+IDA_MAIN	accelerators
+BEGIN
+	"H",	IDM_HEX,VIRTKEY,CONTROL,ALT
+	"D",	IDM_DEC,VIRTKEY,CONTROL,ALT
+	"R",	IDM_RUN,VIRTKEY,CONTROL,ALT
+	"X",	IDM_EXIT,VIRTKEY,ALT
+	VK_F1,	IDM_ABOUT,VIRTKEY
+END
+//--------------------------------------------------------------------------------------------------
+STRINGTABLE DISCARDABLE
+BEGIN
+	IDM_MENUHELP "程序运行设置"
+	IDM_MENUHELP+1 "保存选项设置"
+	IDM_HEX "保存ASCII码为十六进值"
+	IDM_DEC "保存ASCII码为十进值"
+	IDM_EXIT "退出程序"
+	IDM_RUN  "随系统自启动"
+	IDM_HIDE "隐藏/显示程序窗口(alt+d 可切换隐藏/显示状态)"
+END
